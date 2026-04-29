@@ -97,7 +97,7 @@ const MemoHeader: React.FC<MemoHeaderProps> = ({ showCreator, showVisibility, sh
         )}
 
         {!readonly && !isArchived && (
-          <Button variant="ghost" size="icon" className="shadow-none" aria-label="Edit in Focus Mode" title="Edit in Focus Mode" onClick={() => openEditor(true)}>
+          <Button variant="ghost" size="icon" className="shadow-none" aria-label={t("editor.focus-mode")} title={t("editor.focus-mode")} onClick={() => openEditor(true)}>
             <Target className="w-4 h-4" />
           </Button>
         )}
