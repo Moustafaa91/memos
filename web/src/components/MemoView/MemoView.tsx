@@ -20,6 +20,7 @@ const MemoView: React.FC<MemoViewProps> = (props: MemoViewProps) => {
   const { memo: memoData, className, parentPage: parentPageProp, compact, showCreator, showVisibility, showPinned } = props;
   const cardRef = useRef<HTMLDivElement>(null);
   const [showEditor, setShowEditor] = useState(false);
+  const [showEditorFocusMode, setShowEditorFocusMode] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
 
   const currentUser = useCurrentUser();
@@ -36,8 +37,14 @@ const MemoView: React.FC<MemoViewProps> = (props: MemoViewProps) => {
 
   const { previewState, openPreview, setPreviewOpen } = useImagePreview();
 
-  const openEditor = useCallback(() => setShowEditor(true), []);
-  const closeEditor = useCallback(() => setShowEditor(false), []);
+  const openEditor = useCallback((isFocusMode?: boolean) => {
+    setShowEditorFocusMode(Boolean(isFocusMode));
+    setShowEditor(true);
+  }, []);
+  const closeEditor = useCallback(() => {
+    setShowEditor(false);
+    setShowEditorFocusMode(false);
+  }, []);
 
   const location = useLocation();
   const isInMemoDetailPage = location.pathname.startsWith(`/${memoData.name}`) || location.pathname.startsWith("/memos/shares/");
@@ -109,6 +116,7 @@ const MemoView: React.FC<MemoViewProps> = (props: MemoViewProps) => {
         cacheKey={`inline-memo-editor-${memoData.name}`}
         memo={memoData}
         parentMemoName={memoData.parent || undefined}
+        isFocusMode={showEditorFocusMode}
         onConfirm={closeEditor}
         onCancel={closeEditor}
       />

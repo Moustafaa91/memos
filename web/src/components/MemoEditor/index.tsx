@@ -25,6 +25,7 @@ import type { EditorRefActions } from "./Editor";
 import { useAudioRecorder, useAutoSave, useFocusMode, useKeyboard, useMemoInit } from "./hooks";
 import { errorService, memoService, transcriptionService, validationService } from "./services";
 import { EditorProvider, useEditorContext } from "./state";
+import { initialState } from "./state/types";
 import type { MemoEditorProps } from "./types";
 import type { LocalFile } from "./types/attachment";
 
@@ -34,7 +35,13 @@ const TRANSCRIPTION_PROVIDER_TYPES: InstanceSetting_AIProviderType[] = [
 ];
 
 const MemoEditor = (props: MemoEditorProps) => (
-  <EditorProvider>
+  <EditorProvider initialEditorState={{
+    ...initialState,
+    ui: {
+      ...initialState.ui,
+      isFocusMode: props.isFocusMode ?? initialState.ui.isFocusMode,
+    },
+  }}>
     <MemoEditorImpl {...props} />
   </EditorProvider>
 );

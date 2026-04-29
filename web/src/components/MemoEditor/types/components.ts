@@ -11,6 +11,7 @@ export interface MemoEditorProps {
   memo?: Memo;
   parentMemoName?: string;
   autoFocus?: boolean;
+  isFocusMode?: boolean;
   onConfirm?: (memoName: string) => void;
   onCancel?: () => void;
 }
