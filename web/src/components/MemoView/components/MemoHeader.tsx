@@ -1,6 +1,7 @@
 import { BookmarkIcon, Target } from "lucide-react";
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import useNavigateTo from "@/hooks/useNavigateTo";
 import i18n from "@/i18n";
@@ -11,7 +12,6 @@ import { useTranslate } from "@/utils/i18n";
 import { convertVisibilityToString } from "@/utils/memo";
 import MemoActionMenu from "../../MemoActionMenu";
 import { ReactionSelector } from "../../MemoReactionListView";
-import { Button } from "@/components/ui/button";
 import UserAvatar from "../../UserAvatar";
 import VisibilityIcon from "../../VisibilityIcon";
 import { useMemoActions } from "../hooks";
@@ -97,7 +97,14 @@ const MemoHeader: React.FC<MemoHeaderProps> = ({ showCreator, showVisibility, sh
         )}
 
         {!readonly && !isArchived && (
-          <Button variant="ghost" size="icon" className="shadow-none" aria-label={t("editor.focus-mode")} title={t("editor.focus-mode")} onClick={() => openEditor(true)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="shadow-none"
+            aria-label={t("editor.focus-mode")}
+            title={t("editor.focus-mode")}
+            onClick={() => openEditor(true)}
+          >
             <Target className="w-4 h-4" />
           </Button>
         )}

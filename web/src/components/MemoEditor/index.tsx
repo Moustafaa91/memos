@@ -35,13 +35,15 @@ const TRANSCRIPTION_PROVIDER_TYPES: InstanceSetting_AIProviderType[] = [
 ];
 
 const MemoEditor = (props: MemoEditorProps) => (
-  <EditorProvider initialEditorState={{
-    ...initialState,
-    ui: {
-      ...initialState.ui,
-      isFocusMode: props.isFocusMode ?? initialState.ui.isFocusMode,
-    },
-  }}>
+  <EditorProvider
+    initialEditorState={{
+      ...initialState,
+      ui: {
+        ...initialState.ui,
+        isFocusMode: props.isFocusMode ?? initialState.ui.isFocusMode,
+      },
+    }}
+  >
     <MemoEditorImpl {...props} />
   </EditorProvider>
 );
