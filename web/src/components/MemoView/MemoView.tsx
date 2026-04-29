@@ -38,7 +38,7 @@ const MemoView: React.FC<MemoViewProps> = (props: MemoViewProps) => {
   const { previewState, openPreview, setPreviewOpen } = useImagePreview();
 
   const openEditor = useCallback((isFocusMode?: boolean) => {
-    setShowEditorFocusMode(Boolean(isFocusMode));
+    setShowEditorFocusMode(isFocusMode === true);
     setShowEditor(true);
   }, []);
   const closeEditor = useCallback(() => {
